@@ -1,23 +1,29 @@
 // Imports
-import express from 'express';
-import globalErr from './middleware/globalErr.mjs';
-import userRoutes from './routes/userRoutes.mjs';
+import express from "express";
+import userRoutes from "./routes/userRoutes.mjs";
+import titleRoutes from "./routes/titleRoutes.mjs";
+import contentRoutes from './routes/contentRoutes.mjs';
+import { error } from "./utilities/error.mjs";
 
-// Setup
+// Setups
 const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(express.urlencoded({extended: true})); // You can use post request with JSON
-app.use(express.json()); // Parses our JSON data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
-app.use('/user', userRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/titles", titleRoutes);
+app.use("/api/contents", contentRoutes);
 
-// Global Error Handling Middleware
-app.use(globalErr);
+// Error handler middleware
+app.use((err, req, res, next) => {
+  res.status(500).json({ msg: "❌ Error - " + (err.message || "Server error") });
+});
 
-// Server Listener
-app.listen(PORT, ()=>{
-    console.log(`Server Running on PORT: ${PORT}`);
+// Listener
+app.listen(PORT, () => {
+  console.log(`Server running on PORT: ${PORT}`);
 });
