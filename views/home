@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>#title#</title>
+    <meta charset="UTF-8" />
+    <link ref="stylesheet" href="/style.css" />
+  </head>
+  <body>
+  <ul>
+  <li><a href="/home">Home</a></li>
+  <li><a href="/form">Form</a></li>
+  </ul>
+      <div>
+      <h1>#title#</h1>
+      <div>#content#</div>
+      <img src="#img#" alt="" />
+    </div>
+  </body>
+</html>
